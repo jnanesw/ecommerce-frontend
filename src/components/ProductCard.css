@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+.product-card {
+  @apply bg-white rounded-2xl shadow-md p-4 hover:shadow-lg transition-shadow duration-300;
+}
+
+.product-image {
+  @apply w-full h-48 object-cover rounded-lg;
+}
+
+.product-title {
+  @apply text-lg font-semibold mt-2;
+}
+
+.product-description {
+  @apply text-gray-600 text-sm mt-1;
+}
+
+.product-pricing {
+  @apply mt-2 flex items-center space-x-2;
+}
+
+.original-price {
+  @apply line-through text-gray-400 text-sm;
+}
+
+.discounted-price {
+  @apply text-green-600 font-bold;
+}
+
+.add-to-cart {
+  @apply mt-3 w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-300;
+}
+
+@import "tailwindcss";
+
+
