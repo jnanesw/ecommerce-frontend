@@ -12,7 +12,7 @@ function Products() {
       image: "https://placehold.co/600x400",
       description:
         "Experience the latest in mobile technology with advanced cameras, powerful processing, and an all-day battery.",
-      quantity: 0,
+      quantity: 2,
       price: 1450.0,
       discount: 10.0,
       specialPrice: 1305.0,
@@ -31,15 +31,15 @@ function Products() {
   ];
 
   return (
-    <div>
+    <div className="product-list">
       {isLoading ? (
         <p>Content is Loading...</p>
       ) : errorMessage.length > 0 ? (
         <p>{errorMessage}</p>
       ) : (
-        products.map((product, key) => (
-          <ProductCard className="product-list" key={key} product={product} />
-        ))
+        products.map((product, key) => {
+          return <ProductCard key={key} product={product} />
+        })
       )}
     </div>
   );
