@@ -37,7 +37,7 @@ function Products() {
       ) : errorMessage.length > 0 ? (
         <p>{errorMessage}</p>
       ) : (
-        products.map((product, key) => {
+        products && products.map((product, key) => {
           return <ProductCard key={key} product={product} />
         })
       )}

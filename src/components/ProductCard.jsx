@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./ProductCard.css";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
+import ProductButton from "./ProductButton";
+import ProductViewModal from "./ProductViewModal";
 
 function ProductCard({ product }) {
 
@@ -16,7 +18,7 @@ function ProductCard({ product }) {
 
   return (
     <div className="product-card" >
-      <div onClick={handleProductView({product})}>
+      <div onClick={() => handleProductView({product})}>
         <img
         src={product.image}
         alt={product.productName}
@@ -36,14 +38,17 @@ function ProductCard({ product }) {
           </div>
         )
       }
-      <button className={`bg-blue-500 ${isAvailable ? "opacity-100 hover:bg-blue-600" : "opacity-70"}
-                        text-white py-2 px-3 rounded-lg items-center transition-colors duration-300 w-36 flex justify-center`}
-                        
-                        disabled={!isAvailable || btnLoader}
-                        >
-          <ShoppingCartIcon />
-          {isAvailable ? "Add to Cart" : "Out Of Stock"}
-      </button>
+      <ProductButton
+      isAvailable = {isAvailable}
+      btnLoader = {btnLoader}
+      />
+
+      <ProductViewModal 
+        isOpen = {openProductViewModal}
+        setIsOpen = {setOpenProductViewModal}
+        product = {product}
+        isAvail = {isAvailable}
+      />
     </div>
   );
 }

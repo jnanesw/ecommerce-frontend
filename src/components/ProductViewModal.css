@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+.modal-panel {
+  @apply w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all;
+}
+
+.modal-title {
+  @apply text-xl font-semibold text-gray-900 mb-3;
+}
+
+.modal-image {
+  @apply w-full h-56 object-cover rounded-lg mb-3;
+}
+
+.modal-description {
+  @apply text-gray-600 text-sm mb-4;
+}
+
+.modal-details {
+  @apply space-y-1 text-sm text-gray-700 mb-5;
+}
+
+.label {
+  @apply font-medium text-gray-800;
+}
+
+.modal-actions {
+  @apply flex justify-end;
+}
+
+.add-cart-btn {
+  @apply bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-300;
+}
