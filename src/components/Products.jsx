@@ -9,7 +9,7 @@ function Products() {
   const errorMessage = "";
 
   const products = useSelector(
-    (state) => state.products
+    (state) => state.products.products
   )
 
   const dispatch = useDispatch()
@@ -18,6 +18,8 @@ function Products() {
     dispatch(fetchProducts())
   }, [dispatch])
 
+  // console.log("From Products:", products);
+
   return (
     <div className="product-list">
       {isLoading ? (
@@ -25,9 +27,9 @@ function Products() {
       ) : errorMessage.length > 0 ? (
         <p>{errorMessage}</p>
       ) : (
-        products.length>0 && products.map((product, key) => {
+        Array.isArray(products) && products.length > 0 ? products.map((product, key) => {
           return <ProductCard key={key} product={product} />
-        })
+        }) : <p>No products found.</p>
       )}
     </div>
   );

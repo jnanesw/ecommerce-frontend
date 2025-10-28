@@ -1,5 +1,5 @@
 const initialState = {
-    products: null,
+    products: [],
     categories: null,
     pagination: {}
 }
@@ -12,11 +12,11 @@ export const productReducer = (state = initialState, action) => {
                 products: action.payload,
                 pagination: {
                     ...state.pagination,
-                    pageSize: data.pageSize,
-                    pageNumber: data.pageNumber,
-                    totalElements: data.totalElements,
-                    totalPages: data.totalPages,
-                    lastPage: data.lastPage,
+                    pageSize: action.pageSize,
+                    pageNumber: action.pageNumber,
+                    totalElements: action.totalElements,
+                    totalPages: action.totalPages,
+                    lastPage: action.lastPage,
                 }
             }
     
