@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+.filter-container {
+  @apply flex flex-col md:flex-row items-center justify-between gap-4 bg-white shadow-md rounded-2xl p-4;
+}
+
+.search-bar {
+  @apply w-full md:w-1/3;
+}
+
+.search-bar input {
+  @apply w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.filter-controls {
+  @apply flex flex-wrap items-center gap-4 w-full md:w-auto;
+}
+
+.category-select {
+  @apply min-w-[180px];
+}
+
+.sort-button,
+.clear-button {
+  @apply flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition;
+}
+
+.clear-button {
+  @apply bg-gray-500 hover:bg-rose-600;
+}
