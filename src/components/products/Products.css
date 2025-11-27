@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+.product-list {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-6;
+}
+
+.loader-container {
+  @apply flex justify-center items-center h-[60vh] w-full sm:ml-[25vh] md:ml-[30vh] lg:ml-[75vh];
+}
+.alert-container {
+  @apply flex items-center align-middle sm:ml-[25vh] md:ml-[30vh] lg:ml-[75vh] mt-[40%] w-full;
+}
+.pagination-container {
+  @apply  flex justify-center h-16 pt-2;
+}

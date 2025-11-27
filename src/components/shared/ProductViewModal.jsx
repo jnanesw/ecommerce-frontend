@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import "./ProductViewModal.css";
-import ProductButton from "./ProductButton";
+import ProductButton from "../ProductButton";
 
 function ProductViewModal({ isOpen, setIsOpen, product, isAvail }) {
   if (!product) return null;

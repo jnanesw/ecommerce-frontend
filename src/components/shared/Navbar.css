@@ -1,0 +1,39 @@
+@import "tailwindcss";
+.navbar {
+  @apply h-[70px] bg-gradient-to-r from-[#0A0F24] to-[#0D1B48] text-white sticky top-0 z-50 flex items-center shadow-lg;
+}
+
+.navbar-wrapper {
+  @apply lg:px-14 sm:px-8 px-4 w-full flex justify-between items-center;
+}
+
+.navbar-logo {
+  @apply flex items-center text-2xl font-bold space-x-2 hover:text-white transition;
+}
+
+.navbar-logo-icon {
+  @apply text-3xl;
+}
+
+.navbar-links {
+  @apply flex sm:gap-10 gap-4 sm:items-center sm:static absolute left-0 top-[70px] 
+         bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 sm:bg-transparent 
+         shadow-md sm:shadow-none w-full sm:w-fit flex-col sm:flex-row px-4 sm:px-0 
+         text-gray-100 font-medium transition-all duration-200 h-0 overflow-hidden;
+}
+
+.navbar-open {
+  @apply h-fit pb-5;
+}
+
+.navbar-links li a {
+  @apply text-gray-200 hover:text-white transition font-medium;
+}
+
+.navbar-links .active {
+  @apply text-yellow-300 font-semibold border-b-2 border-yellow-300 pb-[2px];
+}
+
+.navbar-toggle {
+  @apply sm:hidden text-3xl text-white transition;
+}

@@ -1,28 +1,80 @@
 import { FormControl, InputLabel, Select, MenuItem, Button } from "@mui/material";
 import { FaArrowUp, FaArrowDownLong } from "react-icons/fa6";
 import { FiRefreshCw, FiSearch  } from "react-icons/fi";
-import { useState } from "react";
-import "./Filter.css";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
-function Filter() {
+import "./Filter.css";
+
+import { useLocation, useSearchParams, useNavigate } from "react-router-dom";
+
+function Filter({categories}) {
     // const {categories} = useSelector(
     //     (state) => state.products
     // )
 
-    const categories = [
-        { categoryId: 1, categoryName: "Electronics" },
-        { categoryId: 2, categoryName: "Home Appliances" },
-        { categoryId: 3, categoryName: "Mobiles" }
-    ]
+    // const categories = [
+    //     { categoryId: 1, categoryName: "Electronics" },
+    //     { categoryId: 2, categoryName: "Home Appliances" },
+    //     { categoryId: 3, categoryName: "Mobiles" }
+    // ]
+
+    const [searchParams] = useSearchParams();
+    const params = new URLSearchParams(searchParams);
+    const navigate = useNavigate();
+    const pathname = useLocation().pathname;
 
     const [searchTerm, setSearchTerm] = useState("");
     const [category, setCategory] = useState("All");
     const [sortBy, setSortBy] = useState("asc");
 
+    useEffect(() => {
+        const currentCategory = searchParams.get("category") || "All";
+        const currentSortBy = searchParams.get("sortby") || "asc";
+        const currentSearchTerm = searchParams.get("keyword") || "";
+
+        setCategory(currentCategory);
+        setSearchTerm(currentSearchTerm);
+        setSortBy(currentSortBy);
+    }, [searchParams]);
+
+    useEffect(() => { 
+        const handler = setTimeout(()=>{
+            if(searchTerm){
+                searchParams.set("keyword", searchTerm);
+            }else{
+                searchParams.delete("keyword")
+            }
+            navigate(`${pathname}?${searchParams.toString()}`);
+        }, 700);
+
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [searchParams, searchTerm, navigate, pathname]);
+
+    const handleSortBy = () => {
+        const newOrder = sortBy === "asc" ? "desc" : "asc";
+        params.set("sortby", newOrder);
+        navigate(`${pathname}?${params.toString()}`);
+        setSortBy(newOrder);
+    };
+
+    const handleCategory = (e) =>{
+        const selectedCategory = e.target.value;
+
+        if(selectedCategory === "All"){
+            params.delete("category");
+        }else{
+            params.set("category", selectedCategory);
+        }
+        
+        navigate(`${pathname}?${params.toString()}`);
+        setCategory(selectedCategory);
+        
+    }
+
     const handleClear = () => {
-        setCategory("All");
-        setSortBy("asc");
+        navigate({pathname: window.location.pathname});
     };
 
     return (
@@ -45,7 +97,7 @@ function Filter() {
                         id="demo-simple-select"
                         value={category}
                         label="Category"
-                        onChange={(e) => setCategory(e.target.value)}
+                        onChange={(e) => handleCategory(e)}
                     >
                         <MenuItem value="All">All</MenuItem>
                         {categories.map((item, index) => (
@@ -55,9 +107,7 @@ function Filter() {
                         ))}
                     </Select>
                 </FormControl>
-                <Button variant="contained" className="sort-button" onClick={() => (
-                    sortBy==="asc" ? setSortBy("desc") : setSortBy("asc") 
-                )} >
+                <Button variant="contained" className="sort-button" onClick={handleSortBy} >
                     SORT BY {sortBy === "asc" ? <FaArrowUp /> : <FaArrowDownLong />}
                 </Button>
                 <Button color="error" variant="contained" className="clear-button" onClick={handleClear}>

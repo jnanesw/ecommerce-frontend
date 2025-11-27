@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
-/* h1 {
-  @apply text-red-500;
-} */
+.loader-container2 {
+  @apply flex justify-center items-center h-[40vh] w-full;
+}

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./ProductCard.css";
 
-import ProductButton from "./ProductButton";
+import ProductButton from "../ProductButton";
 import ProductViewModal from "./ProductViewModal";
 
 function ProductCard({ product }) {
+  // console.log("Product: ", product)
 
   const isAvailable = product.quantity && Number(product.quantity) > 0;
   const [openProductViewModal, setOpenProductViewModal] = useState(false);
