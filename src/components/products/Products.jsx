@@ -19,7 +19,6 @@ function Products() {
     (state) => state.errors
   );
 
-
   // console.log("isLoading: " + isLoading + ", errorMessage: " + errorMessage);
 
   const {products, categories, pagination} = useSelector(

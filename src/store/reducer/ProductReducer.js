@@ -4,7 +4,7 @@ const initialState = {
     pagination: {}
 }
 
-export const productReducer = (state = initialState, action) => {
+export const productReducer = (state=initialState, action) => {
     switch (action.type) {
         case "FETCH_PRODUCTS":
             // console.log("PN From FP: " + action.pageNumber + " And TE from FP: " + action.totalElements)

@@ -5,10 +5,16 @@ import { IoIosMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
+import { useSelector } from "react-redux";
+import UserMenu from "../UserMenu";
 
 const Navbar = () => {
   const path = useLocation().pathname;
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const {cart} = useSelector(
+    (state) => state.carts
+  )
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <div className="navbar">
@@ -18,7 +24,7 @@ const Navbar = () => {
           <span>E-Shop</span>
         </Link>
 
-        <ul className={`flex sm:gap-10 gap-4 sm:items-center  text-slate-800 sm:static absolute left-0 top-[70px] sm:shadow-none shadow-md ${
+        <ul className={`flex sm:gap-10 gap-4 sm:items-center  bg-slate-800 sm:static absolute left-0 top-[70px] sm:shadow-none shadow-md ${
             navbarOpen ? "h-fit sm:pb-0 pb-5" : "h-0 overflow-hidden"
           }  transition-all duration-100 sm:h-fit sm:bg-none bg-custom-gradient   text-white sm:w-fit w-full sm:flex-row flex-col px-4 sm:px-0`}>
                 <li className="font-medium transition-all duration-150">
@@ -58,14 +64,14 @@ const Navbar = () => {
                    </Link> 
                 </li>
 
-                <li className="font-medium transition-all duration-150">
+                <li className="font-medium transition-all duration-150 p-2">
                    <Link className={`${
                     path === "/cart" ? "text-white font-semibold" : "text-gray-200"
                    }`}
                     to="/cart">
                         <Badge
                             showZero
-                            // badgeContent={cart?.length || 0}
+                            badgeContent={cart?.length || 0}
                             color="primary"
                             overlap="circular"
                             anchorOrigin={{ vertical: 'top', horizontal: 'right', }}>
@@ -74,7 +80,7 @@ const Navbar = () => {
                    </Link> 
                 </li>
 
-                {/* {(user && user.id) ? (
+                {(user && user.id) ? (
                     <li className="font-medium transition-all duration-150">
                         <UserMenu />
                     </li>
@@ -90,7 +96,7 @@ const Navbar = () => {
                         <span>Login</span>
                    </Link> 
                 </li>
-                )} */}
+                )}
             </ul>
 
         <button onClick={() => setNavbarOpen(!navbarOpen)} className="navbar-toggle">

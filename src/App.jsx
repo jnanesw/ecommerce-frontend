@@ -6,6 +6,11 @@ import About from './components/About';
 import Contact from './components/Contact';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Cart from './components/cart/Cart';
+import LogIn from './components/auth/Login';
+import Register from './components/auth/Register';
+import PrivateRoute from './components/PrivateRoute';
+import Checkout from './components/checkout/Checkout';
 function App() {
 
   return (
@@ -16,6 +21,17 @@ function App() {
         <Route path='/products' Component={Products} />
         <Route path='/about' Component={About} />
         <Route path='/contact' Component={Contact} />
+        <Route path='/cart' Component={Cart} />
+
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path='/checkout' Component={Checkout} />
+        </Route>
+
+        <Route path="/" element={<PrivateRoute publicPage />}>
+          <Route path="login" element={<LogIn />} />
+          <Route path='/register' Component={Register} />
+          <Route path='/checkout' Component={Checkout} />
+        </Route>
       </Routes>
     </Router>
   )

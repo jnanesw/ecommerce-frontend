@@ -6,11 +6,11 @@ import store from './store/reducer/store.js'
 import { Provider } from 'react-redux'
 
 import { BrowserRouter } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <StrictMode>
       <App />
-    </StrictMode>
+      <Toaster />
   </Provider>
 )

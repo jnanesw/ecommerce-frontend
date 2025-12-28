@@ -3,6 +3,9 @@ import "./ProductCard.css";
 
 import ProductButton from "../ProductButton";
 import ProductViewModal from "./ProductViewModal";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/actions";
+import toast from "react-hot-toast";
 
 function ProductCard({ product }) {
   // console.log("Product: ", product)
@@ -11,11 +14,17 @@ function ProductCard({ product }) {
   const [openProductViewModal, setOpenProductViewModal] = useState(false);
   const [selectedViewProduct, setSelectedViewProduct] = useState("");
   const btnLoader = false;
+  const dispatch = useDispatch()
 
   const handleProductView = (product) => {
             setSelectedViewProduct(product);
             setOpenProductViewModal(true);
     };
+
+  const addToCartHandler = (cartItems) =>{
+    // toast.success("Entered intor the addToCartHandler")
+    dispatch(addToCart(cartItems, 1, toast))
+  }
 
   return (
     <div className="product-card" >
@@ -40,8 +49,9 @@ function ProductCard({ product }) {
         )
       }
       <ProductButton
-      isAvailable = {isAvailable}
-      btnLoader = {btnLoader}
+        isAvailable = {isAvailable}
+        btnLoader = {btnLoader}
+        onClick={() => addToCartHandler(product)}
       />
 
       <ProductViewModal 

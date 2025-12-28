@@ -13,7 +13,7 @@ function Paginations({numberOfPages, totalProducts}){
             : 1;
 
     const onChangeHandler = (event, value)=>{
-        console.log("Value STRING: ",value.toString())
+        // console.log("Value STRING: ",value.toString())
         params.set("pageNumber", value.toString());
         navigate(`${pathName}?${params}`)
     }
